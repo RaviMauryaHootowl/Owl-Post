@@ -1,38 +1,132 @@
-.App {
-  text-align: center;
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.App{
+  width: 100%;
+  min-height: 100vh;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
+.pageContainer{
+  background-color: #fefefe;
+  width: 100%;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  align-items: center;
+}
+
+.navBarContainer{
+  height: 90px;
+  display: flex;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  align-items: center;
+  font-size: 30px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  font-family: 'Montserrat', sans-serif;
+  color: #42210B;
+}
+
+.navIcon{
+  width: 30px;
+  margin-right: 10px;
+}
+
+.mainContainer{
+  width: 100%;
+  padding: 0 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.inputBar{
+  width: 80%;
+  display: flex;
+  margin-bottom: 25px;
+}
+
+.urlEndpointInput{
+  flex: 2;
+  height: 45px;
+  background-color: rgb(223, 223, 255);
+  outline: none;
+  border: none;
+  margin-right: 10px;
+  padding: 18px;
+  font-size: 18px;
+  color: rgb(41, 41, 41);
+  border-bottom-right-radius: 100vh;
+  border-top-right-radius: 100vh;
+}
+
+.methodSelectBtn{
+  background-color: blueviolet;
+  padding: 0 20px;
+  outline: none;
+  border: none;
+  border-bottom-left-radius: 100vh;
+  border-top-left-radius: 100vh;
+  font-weight: 500;
+  font-size: 18px;
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.sendBtn{
+  background-color: blueviolet;
+  padding: 0 20px;
+  outline: none;
+  border: none;
+  border-radius: 100vh;
+  color: white;
+  transition: all 0.2s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.sendBtn:active{
+  transform: scale(0.95);
+}
+
+.resPane{
+  width: 50%;
+  background-color: #141414;
+  border-radius: 10px;
+}
+
+.resContainer{
+  width: 100%;
+  background-color: #272822;
+  color: #fefefe;
+}
+
+.responseResultJSON{
+  overflow-y: scroll;
+  height: 300px;
+  padding: 20px;
+}
+
+.bottomContainer{
+  width: 100%;
+  display: flex;
+}
+
+.propertySelectionContainerAppPage{
+  width: 50%;
+}
+
+.statusBar{
+  margin: 10px 20px;
+  color: white;
+}
+
+.statusBarTitle{
+  font-weight: 500;
+}
+
+.statusBarCode{
+  font-weight: 600;
 }

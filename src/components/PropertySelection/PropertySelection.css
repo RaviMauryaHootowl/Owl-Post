@@ -1,0 +1,94 @@
+.propertySelectionContainer{
+    display: flex;
+    flex-direction: column;
+    padding: 0 10px;
+}
+
+.tabsContainer{
+    width: 100%;
+    background-color: rgb(193, 207, 255);
+    display: flex;
+    flex-direction: row;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+    padding: 0 10px;
+}
+
+.tab{
+    padding: 10px;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+.selectedtab{
+    border-bottom: blueviolet 6px solid;
+    border-radius: 4px;
+    font-weight: 600;
+}
+
+.tabViewContainer{
+    width: 100%;
+    background-color: rgb(223, 223, 255);
+    height: 300px;
+    padding: 10px;
+    overflow-y: scroll;
+}
+
+.paramsTabContainer, .headerTabContainer{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.keyValueBox{
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.addParamsBtn{
+    align-self: center;
+    margin-top: 20px;
+    background-color: blueviolet;
+    color: white;
+    border-radius: 100vh;
+    border: none;
+    outline: none;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.2s ease;
+}
+
+.addParamsBtn:active{
+    transform: scale(0.95);
+}
+
+.paramsKey, .paramsValue{
+    width: 50%;
+    margin: 8px;
+    height: 32px;
+    border:  none;
+    outline: none;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.removeParam{
+    border-radius: 100vh;
+    height: 25px;
+    width: 25px;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    font-weight: bold;
+    color: rgb(141, 141, 141);
+}
+
+.removeParam:hover{
+    color: rgb(39, 39, 39);
+}
+
