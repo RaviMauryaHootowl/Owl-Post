@@ -14,7 +14,7 @@ export const PropertySelection = () => {
     const selectTab = (index) => {
         setSelectedTabNumber(index);
     }
-    const tabsComponent = [<ParamsTab />, <ParamsTab />, <HeadersTab />, <ParamsTab />];
+    const tabsComponent = [<ParamsTab />, <ParamsTab />, <HeadersTab />, <BodyTab />];
 
     
 
@@ -110,6 +110,45 @@ export const HeadersTab = (props) => {
                 })
             }
             <button onClick={addHeaderBox} className="addParamsBtn"><MdAdd size={20}/></button>
+        </div>
+    );
+}
+
+
+export const BodyTab = (props) => {
+    const [endpointURL,setEndpointURL,modifiedURL, setModifiedURL, paramArray, setParamArray, headerArray, setHeaderArray, method, setMethod, bodyArray, setBodyArray ] = useContext(RequestContext);
+    //const [paramArray, setParamArray] = useState([]);
+
+    const addBodyBox = () => {
+        setBodyArray(prevArray => [...prevArray, ["", ""]]);
+    }
+
+    const changeBody = (e, index, pos) => {
+        let tempBodyArray = [...bodyArray];
+        tempBodyArray[index][pos] = e.target.value;
+        setBodyArray(tempBodyArray);
+        //console.log(bodyArray);
+        //props.setParamCall(paramArray);
+    }
+
+    const removeBody = (index) => {
+        let tempBodyArray = [...bodyArray];
+        tempBodyArray.splice(index, 1);
+        setBodyArray(tempBodyArray);
+    }
+
+    return (
+        <div className="bodyTabContainer">
+            {
+                bodyArray.map((bodyPair, index) => {
+                    return <div className="keyValueBox">
+                        <input value={bodyArray[index][0]} className="paramsKey" type="text" placeholder="Key" onChange={(e) => {changeBody(e, index, 0)}}/>
+                        <input value={bodyArray[index][1]} className="paramsValue" type="text" placeholder="Value" onChange={(e) => {changeBody(e, index, 1)}}/>
+                        <button className="removeParam" onClick={() => {removeBody(index)}}><MdHighlightOff size={25}/></button>
+                    </div>
+                })
+            }
+            <button onClick={addBodyBox} className="addParamsBtn"><MdAdd size={20}/></button>
         </div>
     );
 }

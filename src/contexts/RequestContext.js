@@ -8,6 +8,8 @@ export const RequestProvider = (props) => {
     const [modifiedURL, setModifiedURL] = useState('');
     const [paramsArray, setParamsArray] = useState([]);
     const [headerArray, setHeaderArray] = useState([]);
+    const [bodyArray, setBodyArray] = useState([]);
+    const [method, setMethod] = useState('GET');
 
     useEffect(() => {
         let tempObj = {};
@@ -19,10 +21,10 @@ export const RequestProvider = (props) => {
         //console.log('paramsString : ' + paramsString);
         setModifiedURL(`${endpointURL}?${paramsString}`);
         //console.log('modifiedURL : ' + modifiedURL);
-    }, [paramsArray, headerArray, endpointURL]);
+    }, [paramsArray, headerArray, endpointURL, bodyArray]);
 
     return (
-        <RequestContext.Provider value={[endpointURL,setEndpointURL,modifiedURL, setModifiedURL, paramsArray, setParamsArray, headerArray, setHeaderArray]}>
+        <RequestContext.Provider value={[endpointURL,setEndpointURL,modifiedURL, setModifiedURL, paramsArray, setParamsArray, headerArray, setHeaderArray, method, setMethod, bodyArray, setBodyArray]}>
             {props.children}
         </RequestContext.Provider>
     );

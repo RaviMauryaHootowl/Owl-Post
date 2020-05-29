@@ -62,6 +62,11 @@
   border-top-right-radius: 100vh;
 }
 
+.dropdown{
+  position: relative;
+  transition: all 0.5 ease;
+}
+
 .methodSelectBtn{
   background-color: blueviolet;
   padding: 0 20px;
@@ -72,7 +77,26 @@
   font-weight: 500;
   font-size: 18px;
   color: white;
+  height: 45px;
 }
+
+.dropDownMethodSelect{
+  position: absolute;
+  display: none;
+  flex-direction: column;
+  background-color: rgb(219, 181, 255);
+  z-index: 1;
+  transition: all 0.5 ease;
+}
+
+.dropDownMethodSelect span{
+  font-size: 18px;
+  font-weight: 600;
+  padding: 12px 10px;
+  cursor: pointer;
+}
+
+.dropdown:hover .dropDownMethodSelect {display: flex;}
 
 .sendBtn{
   background-color: blueviolet;
