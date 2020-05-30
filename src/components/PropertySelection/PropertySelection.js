@@ -3,6 +3,8 @@ import './PropertySelection.css';
 import JSONPretty from 'react-json-pretty';
 import { MdHighlightOff, MdAdd } from 'react-icons/md';
 import {RequestContext, RequestProvider} from '../../contexts/RequestContext';
+import Dropdown from 'react-dropdown';
+import 'react-dropdown/style.css';
 
 export const PropertySelection = () => {
     const tabsName = ['Params', 'Auth', 'Headers', 'Body'];
@@ -14,7 +16,7 @@ export const PropertySelection = () => {
     const selectTab = (index) => {
         setSelectedTabNumber(index);
     }
-    const tabsComponent = [<ParamsTab />, <ParamsTab />, <HeadersTab />, <BodyTab />];
+    const tabsComponent = [<ParamsTab />, <AuthTab />, <HeadersTab />, <BodyTab />];
 
     
 
@@ -39,7 +41,7 @@ export const PropertySelection = () => {
 }
 
 export const ParamsTab = (props) => {
-    const [endpointURL,setEndpointURL,modifiedURL, setModifiedURL, paramArray, setParamArray ] = useContext(RequestContext);
+    const {paramArray, setParamArray } = useContext(RequestContext);
     //const [paramArray, setParamArray] = useState([]);
 
     const addParamBox = () => {
@@ -76,8 +78,35 @@ export const ParamsTab = (props) => {
     );
 }
 
+export const AuthTab = (props) => {
+    const { authType, setAuthType, authValue, setAuthValue } = useContext(RequestContext);
+
+    const options = ['No Auth', 'Bearer Token', 'OAuth 2.0'];
+    const [optionNumber, setOptionNumber] = useState(0);
+    const views = [
+        <div></div>,
+        <input value={authValue} className="authKey" type="text" placeholder="Token" onChange={(e) => {setAuthValue(e.target.value)}}/>,
+        <input value={authValue} className="authKey" type="text" placeholder="Access Token" onChange={(e) => {setAuthValue(e.target.value)}}/>
+    ]
+
+    const changeAuthType = (e) => {
+        setAuthValue('');
+        setAuthType(e.value);
+        if(e.value == options[0]) setOptionNumber(0);
+        else if(e.value == options[1]) setOptionNumber(1);
+        else setOptionNumber(2);
+    }
+
+    return (
+        <div className="authTabContainer">
+            <Dropdown options={options} onChange={changeAuthType} value={authType} placeholder="Select an option" />
+            { views[optionNumber] }
+        </div>
+    );
+}
+
 export const HeadersTab = (props) => {
-    const [endpointURL,setEndpointURL,modifiedURL, setModifiedURL, paramArray, setParamArray, headerArray, setHeaderArray ] = useContext(RequestContext);
+    const { headerArray, setHeaderArray } = useContext(RequestContext);
     //const [paramArray, setParamArray] = useState([]);
 
     const addHeaderBox = () => {
@@ -88,7 +117,6 @@ export const HeadersTab = (props) => {
         let tempHeaderArray = [...headerArray];
         tempHeaderArray[index][pos] = e.target.value;
         setHeaderArray(tempHeaderArray);
-        console.log(paramArray);
         //props.setParamCall(paramArray);
     }
 
@@ -116,7 +144,7 @@ export const HeadersTab = (props) => {
 
 
 export const BodyTab = (props) => {
-    const [endpointURL,setEndpointURL,modifiedURL, setModifiedURL, paramArray, setParamArray, headerArray, setHeaderArray, method, setMethod, bodyArray, setBodyArray ] = useContext(RequestContext);
+    const { bodyArray, setBodyArray } = useContext(RequestContext);
     //const [paramArray, setParamArray] = useState([]);
 
     const addBodyBox = () => {

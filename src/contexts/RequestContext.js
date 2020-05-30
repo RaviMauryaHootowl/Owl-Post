@@ -6,25 +6,27 @@ export const RequestContext = createContext();
 export const RequestProvider = (props) => {
     const [endpointURL, setEndpointURL] = useState('');
     const [modifiedURL, setModifiedURL] = useState('');
-    const [paramsArray, setParamsArray] = useState([]);
+    const [paramArray, setParamArray] = useState([]);
     const [headerArray, setHeaderArray] = useState([]);
     const [bodyArray, setBodyArray] = useState([]);
     const [method, setMethod] = useState('GET');
+    const [authType, setAuthType] = useState('No Auth');
+    const [authValue, setAuthValue] = useState("");
 
     useEffect(() => {
         let tempObj = {};
-        paramsArray.map((param) => {
+        paramArray.map((param) => {
             tempObj[param[0]] = param[1];
         });
 
-        let paramsString = queryString.stringify(tempObj);
+        let paramString = queryString.stringify(tempObj);
         //console.log('paramsString : ' + paramsString);
-        setModifiedURL(`${endpointURL}?${paramsString}`);
+        setModifiedURL(`${endpointURL}?${paramString}`);
         //console.log('modifiedURL : ' + modifiedURL);
-    }, [paramsArray, headerArray, endpointURL, bodyArray]);
+    }, [paramArray, headerArray, endpointURL, bodyArray]);
 
     return (
-        <RequestContext.Provider value={[endpointURL,setEndpointURL,modifiedURL, setModifiedURL, paramsArray, setParamsArray, headerArray, setHeaderArray, method, setMethod, bodyArray, setBodyArray]}>
+        <RequestContext.Provider value={{endpointURL,setEndpointURL,modifiedURL, setModifiedURL, paramArray, setParamArray, headerArray, setHeaderArray, method, setMethod, bodyArray, setBodyArray, authType, setAuthType, authValue, setAuthValue}}>
             {props.children}
         </RequestContext.Provider>
     );
