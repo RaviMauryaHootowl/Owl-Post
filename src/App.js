@@ -1,6 +1,7 @@
 import React, {useState, useContext} from 'react';
 import logo from './logo.svg';
 import './App.css';
+
 import {PropertySelection} from './components/PropertySelection/PropertySelection';
 import JSONPretty from 'react-json-pretty';
 import JSONPrettyMon from 'react-json-pretty/themes/monikai.css';
@@ -9,9 +10,11 @@ import { MdSend } from 'react-icons/md';
 import { RequestContext } from './contexts/RequestContext';
 
 function App() {
+
   //const [endpointURL, setEndpointURL] = useState('');
   //const [modifiedURL, setModifiedURL] = useState('');
   //const [method, setMethod] = useState('GET');
+
   const [res, setRes] = useState('');
   const [statusCode, setStatusCode] = useState("");
   const {endpointURL,setEndpointURL,modifiedURL, setModifiedURL, headerArray, method, setMethod, bodyArray, authType, setAuthType, authValue, setAuthValue } = useContext(RequestContext);
@@ -19,19 +22,20 @@ function App() {
   const getRequest = () => {
     setRes('Fetching...');
 
-    
     var myHeaders = new Headers();
     var bodyJSON = {};
     
-
-    for(let i = 0; i < headerArray.length; i++){
+    for(let i = 0; i < headerArray.length; i++)
+    {
       myHeaders.append(headerArray[i][0], headerArray[i][1]);
     }
 
     if(authType === 'Bearer Token') myHeaders.append("Authorization", `Bearer ${authValue}`);
+
     else if (authType === 'OAuth 2.0') myHeaders.append("Authorization", `Bearer ${authValue}`);
 
-    for(let i = 0; i < bodyArray.length; i++){
+    for(let i = 0; i < bodyArray.length; i++)
+    {
       bodyJSON[bodyArray[i][0]] = bodyArray[i][1];
     }
 
@@ -53,13 +57,11 @@ function App() {
       .then(response => {console.log(response); setStatusCode(response.status); return response.text()})
       .then(result => {console.log(result); setRes(result)})
       .catch(error => {console.log(typeof(error));});
-
   }
 
   const changeMethod = (tempMethod) => {
     setMethod(tempMethod);
   }
-
 
   return (
       <div className="App">
