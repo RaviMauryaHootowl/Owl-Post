@@ -18,7 +18,7 @@ Step 2:
 ``` 
 
 Step 3:
-Go to your browser to this link - [localhost](http://localhost:3000) to see the app.<br>
+Go to your browser to this link - [localhost](http://localhost:3000) (localhost:3000) to see the app.<br>
 
 ![Screenshot](./assets/ss.JPG)
 
